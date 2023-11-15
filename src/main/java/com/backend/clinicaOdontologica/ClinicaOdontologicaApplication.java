@@ -19,7 +19,7 @@ public class ClinicaOdontologicaApplication {
 		Connection connection = null;
 		try {
 			Class.forName("org.h2.Driver");
-			connection = DriverManager.getConnection("jdbc:h2:~/clinica;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "");
+			connection = DriverManager.getConnection("jdbc:h2:~/test;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "");
 
 		} catch (Exception e){
 			e.printStackTrace();
