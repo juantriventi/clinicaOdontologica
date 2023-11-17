@@ -8,10 +8,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
     public class PacienteEntradaDto {
@@ -27,7 +25,7 @@ import java.time.LocalDate;
         private String apellido;
 
         @NotNull(message = "El dni del paciente no puede ser nulo")
-        @Size(max = 12, message = "El nombre debe tener hasta 12 digitos")
+        @Max(value = 99999999, message = "El DNI no puede tener más de 8 dígitos")
         private Integer dni;
 
         @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
