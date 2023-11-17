@@ -89,4 +89,15 @@ import java.time.LocalDate;
         public void setDomicilioEntradaDto(DomicilioEntradaDto domicilioEntradaDto) {
             this.domicilioEntradaDto = domicilioEntradaDto;
         }
+
+        @Override
+        public String toString() {
+            return "PacienteEntradaDto{" +
+                    "nombre='" + nombre + '\'' +
+                    ", apellido='" + apellido + '\'' +
+                    ", dni=" + dni +
+                    ", fechaIngreso='" + fechaIngreso + '\'' +
+                    ", domicilioEntradaDto=" + domicilioEntradaDto +
+                    '}';
+        }
 }

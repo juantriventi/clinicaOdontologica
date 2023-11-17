@@ -3,7 +3,9 @@ C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clin
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\service\IPacienteService.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\service\impl\OdontologoService.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\salidaPaciente\PacienteSalidaDto.java
+C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\utils\LocalDateAdapter.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\entradaPaciente\DomicilioEntradaDto.java
+C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\utils\LocalDateTimeAdapter.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\repository\PacienteRepository.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\service\impl\PacienteService.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\controller\PacienteController.java
@@ -11,3 +13,4 @@ C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clin
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\salidaPaciente\DomicilioSalidaDto.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\model\Odontologo.java
 C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\ClinicaOdontologicaApplication.java
+C:\Users\jctriventi\Downloads\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\utils\JsonPrinter.java

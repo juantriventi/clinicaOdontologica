@@ -7,12 +7,17 @@ import com.backend.clinicaOdontologica.model.Paciente;
 import com.backend.clinicaOdontologica.repository.PacienteRepository;
 import com.backend.clinicaOdontologica.service.IPacienteService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class PacienteService implements IPacienteService {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
 
     private PacienteRepository pacienteRepository;
     private ModelMapper modelMapper;
@@ -24,11 +29,13 @@ public class PacienteService implements IPacienteService {
     }
 
     public PacienteSalidaDto registrarPaciente(PacienteEntradaDto paciente) {
+
+        LOGGER.info("PacienteEntradaDTO: " + paciente.toString());
+
         Paciente pacienteEntidad = modelMapper.map(paciente, Paciente.class);
 
         // Mapeo manual del domicilio
         pacienteEntidad.setDomicilio(modelMapper.map(paciente.getDomicilioEntradaDto(), Domicilio.class));
-
 
         Paciente pacienteAPersistir = pacienteRepository.save(pacienteEntidad);
 
@@ -46,9 +53,8 @@ public class PacienteService implements IPacienteService {
             Paciente pacienteBuscado = pacienteOptional.get();
             pacienteEncontrado = modelMapper.map(pacienteBuscado, PacienteSalidaDto.class);
         } else {
-            System.out.println("Error al buscar paciente");
+            LOGGER.error("Error al buscar paciente");
         }
-
         return pacienteEncontrado;
     }
 
