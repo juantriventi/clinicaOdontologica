@@ -20,11 +20,7 @@ Para correr este proyecto
 -   mvn clean install
 ```
 
-
-# API JAVA || SPRING BOOT
-
-Una Api para crear usuarios y asignarles roles desde postman con una base de datos h2.
-## Usuarios
+## Pacientes
 
 #### Traer paciente por id
 
