@@ -1,11 +1,26 @@
 package com.backend.clinicaOdontologica.model;
 
-public class Odontologo {
-    private int id;
-    private String matricula;
-    private String nombre;
-    private String apellido;
+import jakarta.persistence.*;
+import org.hibernate.validator.constraints.UniqueElements;
+import java.util.List;
 
+@Entity
+@Table(name="ODONTOLOGOS")
+public class Odontologo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Column(length = 50)
+    @UniqueElements
+    private String matricula;
+
+    @Column(length = 50)
+    private String nombre;
+    @Column(length = 50)
+    private String apellido;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "odontologo")
+    private List<Turno> turnoList;
     public Odontologo(int id, String matricula, String nombre, String apellido) {
         this.id = id;
         this.matricula = matricula;
@@ -51,5 +66,11 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
+    public List<Turno> getTurnoList() {
+        return turnoList;
+    }
 
+    public void setTurnoList(List<Turno> turnoList) {
+        this.turnoList = turnoList;
+    }
 }

@@ -1,7 +1,7 @@
 package com.backend.clinicaOdontologica.controller;
 
-import com.backend.clinicaOdontologica.dto.entradaPaciente.PacienteEntradaDto;
-import com.backend.clinicaOdontologica.dto.salidaPaciente.PacienteSalidaDto;
+import com.backend.clinicaOdontologica.dto.entrada.PacienteEntradaDto;
+import com.backend.clinicaOdontologica.dto.salida.PacienteSalidaDto;
 import com.backend.clinicaOdontologica.service.impl.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
