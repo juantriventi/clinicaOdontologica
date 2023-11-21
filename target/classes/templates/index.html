@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de pacientes</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h2>pacientes</h2>
+<script>
+    const id = 1;
+    axios.get(`http://localhost:8080/pacientes/${id}`)
+        .then(response => {
+            // Maneja la respuesta exitosa
+            console.log('Respuesta del servidor:', response.data);
+        })
+        .catch(error => {
+            // Maneja el error
+            console.error('Error al realizar la solicitud:', error);
+        });
+</script>
+
+</body>
+</html>
+
