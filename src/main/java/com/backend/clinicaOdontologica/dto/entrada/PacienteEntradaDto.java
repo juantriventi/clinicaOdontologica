@@ -1,18 +1,14 @@
-package com.backend.clinicaOdontologica.dto.entradaPaciente;
+package com.backend.clinicaOdontologica.dto.entrada;
 
+import com.backend.clinicaOdontologica.dto.entrada.DomicilioEntradaDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
-import java.time.LocalDate;
-
-    public class PacienteEntradaDto {
+public class PacienteEntradaDto {
 
         @NotNull(message = "El nombre del paciente no puede ser nulo")
         @NotBlank(message = "Debe especificarse el nombre del paciente")

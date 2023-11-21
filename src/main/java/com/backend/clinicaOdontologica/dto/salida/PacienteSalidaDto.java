@@ -1,4 +1,6 @@
-package com.backend.clinicaOdontologica.dto.salidaPaciente;
+package com.backend.clinicaOdontologica.dto.salida;
+
+import com.backend.clinicaOdontologica.dto.salida.DomicilioSalidaDto;
 
 import java.time.LocalDate;
 

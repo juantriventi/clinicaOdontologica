@@ -1,4 +1,4 @@
-package com.backend.clinicaOdontologica.dto.entradaPaciente;
+package com.backend.clinicaOdontologica.dto.entrada;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;

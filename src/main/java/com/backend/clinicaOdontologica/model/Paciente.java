@@ -3,6 +3,7 @@ package com.backend.clinicaOdontologica.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "PACIENTES")
@@ -22,6 +23,9 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "paciente_id")
+    private List<Turno> turnoList;
     public Paciente() {
 
     }
@@ -91,5 +95,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
+    public List<Turno> getTurnoList() {
+        return turnoList;
+    }
 
+    public void setTurnoList(List<Turno> turnoList) {
+        this.turnoList = turnoList;
+    }
 }

@@ -1,4 +1,4 @@
-package com.backend.clinicaOdontologica.dto.salidaPaciente;
+package com.backend.clinicaOdontologica.dto.salida;
 
 public class DomicilioSalidaDto {
     private int id;
