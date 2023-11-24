@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
@@ -24,7 +26,13 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
-    //GET
+    @GetMapping("/listar")
+    public ResponseEntity<List<PacienteSalidaDto>> listarPacientes() {
+        List<PacienteSalidaDto> pacientes = pacienteService.listarPacientes();
+        return ResponseEntity.ok(pacientes);
+    }
+
+
     @GetMapping("{id}")
     public ResponseEntity<PacienteSalidaDto> obtenerPacientePorId(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.OK);

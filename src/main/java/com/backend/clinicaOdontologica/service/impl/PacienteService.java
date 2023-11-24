@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +57,17 @@ public class PacienteService implements IPacienteService {
             LOGGER.error("Error al buscar paciente");
         }
         return pacienteEncontrado;
+    }
+    public List<PacienteSalidaDto> listarPacientes() {
+        List<PacienteSalidaDto> pacientesSalidaDto = pacienteRepository.findAll()
+                .stream()
+                .map(paciente -> modelMapper.map(paciente, PacienteSalidaDto.class))
+                .toList();
+
+        if (LOGGER.isInfoEnabled())
+            LOGGER.info("Listado de todos los pacientes: {}", pacientesSalidaDto);
+
+        return pacientesSalidaDto;
     }
 
 

@@ -65,56 +65,65 @@
         </div>
 
     <div id="userData2"></div>
+
     <br>
-    <h2>Buscar Usuario por ID</h2>
 
-    <div class="mb-3">
-        <label for="userIdInput" class="form-label">ID de usuario:</label>
-        <input type="text" class="form-control" id="userIdInput" placeholder="Ingrese el ID del usuario">
+    <h2>Lista de pacientes</h2>
+    <div id="userData3"></div>
+
+    <br>
+
+    <div id="userData" class="card bg-primary text-white mb-5">
+        <div class="card-body">
+            <h5 class="card-title">Buscar por id</h5>
+            <div class="mb-3">
+                <label for="userIdInput" class="form-label text-white">ID de usuario:</label>
+                <input type="text" class="form-control" id="userIdInput" placeholder="Ingrese el ID del usuario">
+            </div>
+            <button onclick="realizarAxiosRequest()" class="btn btn-light">Buscar Usuario</button>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <button onclick="realizarAxiosRequest()" class="btn btn-primary">Buscar Usuario</button>
-    </div>
-    <div id="userData" class="rounded bg-primary text-white"></div>
 </div>
-
 <script>
-        function realizarAxiosRequest() {
-            // Obtener el valor del input
-            var userId = document.getElementById('userIdInput').value;
+function realizarAxiosRequest() {
+    // Obtener el valor del input
+    var userId = document.getElementById('userIdInput').value;
 
-            // Verificar si se ingresó un ID válido
-            if (!userId) {
-                alert('Ingrese un ID de usuario válido.');
-                return;
-            }
+    // Verificar si se ingresó un ID válido
+    if (!userId) {
+        alert('Ingrese un ID de usuario válido.');
+        return;
+    }
 
-            // URL a la que realizar la solicitud Axios con el ID proporcionado
-            var url = 'http://localhost:8080/pacientes/' + userId;
+    // URL a la que realizar la solicitud Axios con el ID proporcionado
+    var url = 'http://localhost:8080/pacientes/' + userId;
 
-            // Realizar la solicitud Axios
-            axios.get(url)
-                .then(response => {
-                    // Manejar los datos obtenidos
-                    mostrarDatosUsuario(response.data);
-                })
-                .catch(error => {
-                    // Manejar los errores
-                    console.error('Error en la solicitud Axios:', error);
-                });
-        }
+    // Realizar la solicitud Axios
+    axios.get(url)
+        .then(response => {
+            // Manejar los datos obtenidos
+            mostrarDatosUsuario(response.data);
+        })
+        .catch(error => {
+            // Manejar los errores
+            console.error('Error en la solicitud Axios:', error);
+        });
+}
 
-        function mostrarDatosUsuario(userData) {
-            // Construir el HTML con los datos del usuario
-            var html = '<h3 class="text-center text-white">Datos del Usuario</h3>';
-            html += '<p>ID: ' + userData.id + '</p>';
-            html += '<p>Nombre: ' + userData.nombre + '</p>';
-            // Agrega más campos según la estructura de tus datos
+function mostrarDatosUsuario(userData) {
+    // Construir el HTML con los datos del usuario
+    var html = '<h5 class="card-title">Datos del Usuario</h5>';
+    html += '<p class="card-text"><strong>ID:</strong> ' + userData.id + '</p>';
+    html += '<p class="card-text"><strong>Nombre:</strong> ' + userData.nombre + '</p>';
+    html += '<p class="card-text"><strong>DNI:</strong> ' + userData.dni + '</p>';
+    html += '<p class="card-text"><strong>Fecha de Ingreso:</strong> ' + userData.fechaIngreso + '</p>';
+    // Agrega más campos según la estructura de tus datos
 
-            // Mostrar el HTML en el elemento con id "userData"
-            document.getElementById('userData').innerHTML = html;
-        }
+    // Mostrar el HTML en el elemento con id "userData"
+    document.getElementById('userData').innerHTML = html;
+}
+
 
          function registrarUsuario() {
             // Obtener los valores de los inputs
@@ -161,6 +170,50 @@
                     console.error('Error en la solicitud Axios:', error);
                 });
         }
+
+document.addEventListener('DOMContentLoaded', function() {
+    obtenerTodosLosPacientes();
+});
+
+function obtenerTodosLosPacientes() {
+    // URL para realizar la solicitud Axios GET de todos los pacientes
+    var url = 'http://localhost:8080/pacientes/listar';
+
+    // Realizar la solicitud Axios GET
+    axios.get(url)
+        .then(response => {
+            // Manejar los datos obtenidos
+            mostrarTodosLosPacientes(response.data);
+        })
+        .catch(error => {
+            // Manejar los errores
+            console.error('Error en la solicitud Axios:', error);
+        });
+}
+
+function mostrarTodosLosPacientes(pacientes) {
+    // Construir el HTML con la lista de todos los pacientes
+    var html = '<h3 class="text-center text-white">Lista de Todos los Pacientes</h3>';
+    html += '<div class="row" style="margin-top:-25px;">';
+
+    // Iterar sobre la lista de pacientes y agregar cada uno a la lista HTML
+    pacientes.forEach(paciente => {
+        html += '<div class="col-md-3 mb-3">';
+        html += '<div class="card">';
+        html += '<div class="card-body">';
+        html += '<p class="card-text">Nombre: ' + paciente.nombre + '</p>';
+        html += '<p class="card-text">Apellido: ' + paciente.apellido + '</p>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+    });
+
+    html += '</div>';
+
+    document.getElementById('userData3').innerHTML = html;
+}
+
+
     </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
