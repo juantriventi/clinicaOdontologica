@@ -60,19 +60,27 @@
             </div>
         </div>
 
-        <div class="mt-3">
-            <button onclick="registrarUsuario()" class="btn btn-primary">Registrar Usuario</button>
-        </div>
+    <div class="mt-3 p-3 text-center">
+        <button onclick="registrarUsuario()" class="btn btn-primary">Registrar Usuario</button>
+    </div>
+
 
     <div id="userData2"></div>
 
     <br>
 
     <h2>Lista de pacientes</h2>
-    <div id="userData3"></div>
+    <div id="userData3">
+        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+            <!-- Spinner de Bootstrap -->
+            <div id="spinner" class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+    </div>
 
     <br>
-
+    <h2>Buscar por id</h2>
     <div id="userData" class="card bg-primary text-white mb-5">
         <div class="card-body">
             <h5 class="card-title">Buscar por id</h5>
@@ -112,7 +120,6 @@ function realizarAxiosRequest() {
 }
 
 function mostrarDatosUsuario(userData) {
-    // Construir el HTML con los datos del usuario
     var html = '<h5 class="card-title">Datos del Usuario</h5>';
     html += '<p class="card-text"><strong>ID:</strong> ' + userData.id + '</p>';
     html += '<p class="card-text"><strong>Nombre:</strong> ' + userData.nombre + '</p>';
@@ -120,10 +127,9 @@ function mostrarDatosUsuario(userData) {
     html += '<p class="card-text"><strong>Fecha de Ingreso:</strong> ' + userData.fechaIngreso + '</p>';
     // Agrega más campos según la estructura de tus datos
 
-    // Mostrar el HTML en el elemento con id "userData"
+    // Mostrar el HTML en el elemento userData
     document.getElementById('userData').innerHTML = html;
 }
-
 
          function registrarUsuario() {
             // Obtener los valores de los inputs
@@ -156,13 +162,11 @@ function mostrarDatosUsuario(userData) {
                 }
             };
 
-            // URL para realizar la solicitud Axios (POST para registrar usuario)
             var url = 'http://localhost:8080/pacientes/registrar';
 
             // Realizar la solicitud Axios POST
             axios.post(url, userData2)
                 .then(response => {
-                    // Manejar los datos obtenidos, por ejemplo, mostrar el ID del usuario registrado
                     console.log('Usuario registrado con ID:', response.data.id);
                 })
                 .catch(error => {
@@ -192,26 +196,39 @@ function obtenerTodosLosPacientes() {
 }
 
 function mostrarTodosLosPacientes(pacientes) {
-    // Construir el HTML con la lista de todos los pacientes
-    var html = '<h3 class="text-center text-white">Lista de Todos los Pacientes</h3>';
-    html += '<div class="row" style="margin-top:-25px;">';
+    document.getElementById('spinner').style.display = 'inline-block';
 
-    // Iterar sobre la lista de pacientes y agregar cada uno a la lista HTML
-    pacientes.forEach(paciente => {
-        html += '<div class="col-md-3 mb-3">';
-        html += '<div class="card">';
-        html += '<div class="card-body">';
-        html += '<p class="card-text">Nombre: ' + paciente.nombre + '</p>';
-        html += '<p class="card-text">Apellido: ' + paciente.apellido + '</p>';
-        html += '</div>';
-        html += '</div>';
-        html += '</div>';
-    });
+    setTimeout(function () {
+        // Construir el HTML con la lista de todos los pacientes
+        var html = '<h3 class="text-center text-white">Lista de Todos los Pacientes</h3>';
+        html += '<div class="row" style="margin-top:-25px;">';
 
-    html += '</div>';
+        // Verificar si hay pacientes
+        if (pacientes && pacientes.length > 0) {
+            // Iterar sobre la lista de pacientes
+            pacientes.forEach(paciente => {
+                html += '<div class="col-md-3 mb-3">';
+                html += '<div class="card">';
+                html += '<div class="card-body">';
+                html += '<p class="card-text">Nombre: ' + paciente.nombre + '</p>';
+                html += '<p class="card-text">Apellido: ' + paciente.apellido + '</p>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+            });
+        } else {
+            html += '<div class="col-md-12 mb-3">';
+            html += '<p class="text-center">No hay pacientes.</p>';
+            html += '</div>';
+        }
 
-    document.getElementById('userData3').innerHTML = html;
+        html += '</div>';
+
+        document.getElementById('userData3').innerHTML = html;
+    }, 1000); // 1000 milisegundos (1 segundo)
 }
+
+
 
 
     </script>
