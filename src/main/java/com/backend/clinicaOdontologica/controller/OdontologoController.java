@@ -7,6 +7,7 @@ import com.backend.clinicaOdontologica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinicaOdontologica.dto.salida.PacienteSalidaDto;
 import com.backend.clinicaOdontologica.service.IOdontologoService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
-    private IOdontologoService odontologoService;
+    private final IOdontologoService odontologoService;
 
+    @Autowired
     public OdontologoController(IOdontologoService odontologoService) {
         this.odontologoService = odontologoService;
     }

@@ -8,16 +8,18 @@ import com.backend.clinicaOdontologica.model.Domicilio;
 import com.backend.clinicaOdontologica.model.Odontologo;
 import com.backend.clinicaOdontologica.model.Paciente;
 import com.backend.clinicaOdontologica.repository.OdontologoRepository;
+import com.backend.clinicaOdontologica.service.IOdontologoService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OdontologoService {
+public class OdontologoService implements IOdontologoService {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
 
     private OdontologoRepository odontologoRepository;
@@ -29,6 +31,11 @@ public class OdontologoService {
         this.modelMapper = modelMapper;
     }
 
+    @Override
+    public List<OdontologoSalidaDto> listarOdontologos() {
+        return null;
+    }
+
     public OdontologoSalidaDto registrarOdontologo(OdontologoEntradaDto odontologo) {
 
         LOGGER.info("OdontologoEntradaDTO: " + odontologo.toString());
@@ -36,7 +43,7 @@ public class OdontologoService {
         Odontologo odontologoEntidad = modelMapper.map(odontologo, Odontologo.class);
 
         //GUARDAMOS ODONTOLOGO
-        Optional<Odontologo> odontologoOptional = odontologoRepository.save(odontologoEntidad);
+        Optional<Odontologo> odontologoOptional = Optional.of(odontologoRepository.save(odontologoEntidad));
 
         OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odontologoOptional, OdontologoSalidaDto.class);
 
@@ -55,6 +62,11 @@ public class OdontologoService {
             LOGGER.error("Error al buscar odontologo");
         }
         return odontologoEncontrado;
+    }
+
+    @Override
+    public void eliminarOdontologo(Long id) {
+
     }
 
 
