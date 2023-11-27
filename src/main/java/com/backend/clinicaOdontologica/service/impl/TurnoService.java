@@ -45,13 +45,14 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public PacienteSalidaDto buscarTurnoPorId(Long id) {
+    public TurnoSalidaDto buscarTurnoPorId(Long id) {
         Optional<Turno> turnoOptional = turnoRepository.findById(id);
         TurnoSalidaDto turnoEncontrado = null;
+        return turnoEncontrado;
     }
 
     @Override
-    public List<PacienteSalidaDto> listarTurnos() {
+    public List<TurnoSalidaDto> listarTurnos() {
         return null;
     }
 
