@@ -11,7 +11,7 @@ public class Odontologo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(length = 50)
-    @UniqueElements
+   // @UniqueElements
     private String matricula;
 
     @Column(length = 50)
@@ -21,11 +21,7 @@ public class Odontologo {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "odontologo")
     private List<Turno> turnoList;
-    public Odontologo(int id, String matricula, String nombre, String apellido) {
-        this.id = id;
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Odontologo() {
     }
 
     public Odontologo(String matricula, String nombre, String apellido) {

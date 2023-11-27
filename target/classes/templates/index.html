@@ -120,7 +120,6 @@ function realizarAxiosRequest() {
 }
 
 function mostrarDatosUsuario(userData) {
-    // Construir el HTML con los datos del usuario
     var html = '<h5 class="card-title">Datos del Usuario</h5>';
     html += '<p class="card-text"><strong>ID:</strong> ' + userData.id + '</p>';
     html += '<p class="card-text"><strong>Nombre:</strong> ' + userData.nombre + '</p>';
@@ -128,10 +127,9 @@ function mostrarDatosUsuario(userData) {
     html += '<p class="card-text"><strong>Fecha de Ingreso:</strong> ' + userData.fechaIngreso + '</p>';
     // Agrega más campos según la estructura de tus datos
 
-    // Mostrar el HTML en el elemento con id "userData"
+    // Mostrar el HTML en el elemento userData
     document.getElementById('userData').innerHTML = html;
 }
-
 
          function registrarUsuario() {
             // Obtener los valores de los inputs
@@ -164,13 +162,11 @@ function mostrarDatosUsuario(userData) {
                 }
             };
 
-            // URL para realizar la solicitud Axios (POST para registrar usuario)
             var url = 'http://localhost:8080/pacientes/registrar';
 
             // Realizar la solicitud Axios POST
             axios.post(url, userData2)
                 .then(response => {
-                    // Manejar los datos obtenidos, por ejemplo, mostrar el ID del usuario registrado
                     console.log('Usuario registrado con ID:', response.data.id);
                 })
                 .catch(error => {
@@ -203,7 +199,7 @@ function mostrarTodosLosPacientes(pacientes) {
     document.getElementById('spinner').style.display = 'inline-block';
 
     setTimeout(function () {
-        // Construir el HTML con la lista
+        // Construir el HTML con la lista de todos los pacientes
         var html = '<h3 class="text-center text-white">Lista de Todos los Pacientes</h3>';
         html += '<div class="row" style="margin-top:-25px;">';
 
@@ -221,9 +217,8 @@ function mostrarTodosLosPacientes(pacientes) {
                 html += '</div>';
             });
         } else {
-            // Mostrar un mensaje si no hay pacientes
             html += '<div class="col-md-12 mb-3">';
-            html += '<p class="text-center text-white">No hay pacientes.</p>';
+            html += '<p class="text-center">No hay pacientes.</p>';
             html += '</div>';
         }
 
@@ -232,6 +227,7 @@ function mostrarTodosLosPacientes(pacientes) {
         document.getElementById('userData3').innerHTML = html;
     }, 1000); // 1000 milisegundos (1 segundo)
 }
+
 
 
 

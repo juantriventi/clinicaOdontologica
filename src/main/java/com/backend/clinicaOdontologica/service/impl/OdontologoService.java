@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Service
 public class OdontologoService implements IOdontologoService {
-    private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(OdontologoService.class);
 
     private OdontologoRepository odontologoRepository;
     private ModelMapper modelMapper;
@@ -33,7 +33,15 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public List<OdontologoSalidaDto> listarOdontologos() {
-        return null;
+        List<OdontologoSalidaDto> odontologoSalidaDto = odontologoRepository.findAll()
+                .stream()
+                .map(odontologo -> modelMapper.map(odontologo, OdontologoSalidaDto.class))
+                .toList();
+
+        if (LOGGER.isInfoEnabled())
+            LOGGER.info("Listado de todos los odontologos: {}", odontologoSalidaDto);
+
+        return odontologoSalidaDto;
     }
 
     public OdontologoSalidaDto registrarOdontologo(OdontologoEntradaDto odontologo) {
@@ -43,9 +51,10 @@ public class OdontologoService implements IOdontologoService {
         Odontologo odontologoEntidad = modelMapper.map(odontologo, Odontologo.class);
 
         //GUARDAMOS ODONTOLOGO
-        Optional<Odontologo> odontologoOptional = Optional.of(odontologoRepository.save(odontologoEntidad));
+        Odontologo odontologoAPersistir = odontologoRepository.save(odontologoEntidad);
 
-        OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odontologoOptional, OdontologoSalidaDto.class);
+
+        OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odontologoAPersistir, OdontologoSalidaDto.class);
 
         return odontologoSalidaDto;
     }
@@ -66,7 +75,7 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public void eliminarOdontologo(Long id) {
-
+        odontologoRepository.deleteById(id);
     }
 
 

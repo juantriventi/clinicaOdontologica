@@ -33,12 +33,12 @@ public class OdontologoController {
 
     //GET
     @GetMapping("{id}")
-    public ResponseEntity<OdontologoSalidaDto> obtenerPacientePorId(@PathVariable Long id) {
+    public ResponseEntity<OdontologoSalidaDto> obtenerOdontologoPorId(@PathVariable Long id) {
         return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id), HttpStatus.OK);
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<OdontologoSalidaDto>> listarPacientes() {
+    public ResponseEntity<List<OdontologoSalidaDto>> listarOdontologos() {
         return new ResponseEntity<>(odontologoService.listarOdontologos(), HttpStatus.OK);
     }
 
