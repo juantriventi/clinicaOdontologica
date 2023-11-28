@@ -17,6 +17,10 @@ Para correr este proyecto
 -   mvn clean install
 ```
 
+
+# API JAVA || SPRING BOOT
+
+Una Api para crear usuarios y asignarles roles desde postman con una base de datos h2.
 ## Pacientes
 
 #### Traer paciente por id
@@ -59,6 +63,92 @@ ejemplo:
     "numero": 123,
     "localidad": "Springfield",
     "provincia": "Springfield Province"
+  }
+}
+```
+
+## Odontologos
+
+
+#### Traer odontologo por id
+
+```http
+  GET /odontologos/{id}
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+
+
+#### Listar Odontologos
+```http
+  GET /odontologos/listar
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+
+#### Registrar odontologo
+
+```http
+  POST /odontologos/registrar
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `matricula` | `int` | **Required**. |
+| `nombre`  | `string` | **Required**. |
+| `apellido`| `string` | **Required**. |
+
+
+ejemplo:
+```json
+{
+  "matricula":1231231233,
+  "nombre":"juan cruz",
+  "apellido":"triventi"
+} 
+```
+#### Eliminar Odontologo
+
+```http
+  DELETE /odontologos/{id}
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+
+
+## Turnos
+
+#### Listar turnos
+
+```http
+  GET /api/turnos/listar
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+
+#### Registrar turno
+```http
+  POST /api/turnos/registrar
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `fechaYHora` | `DateTime` | **Required**. |
+| `odontologo`  
+| `id`| `long` | **Required**. |
+| `paciente`  
+| `id`| `long` | **Required**. |
+
+ejemplo:
+```json
+{
+  "fechaYhora": "2023-11-28T10:00:00",
+  "odontologo": {
+    "id": 1
+  },
+  "paciente": {
+    "id": 1
   }
 }
 ```
