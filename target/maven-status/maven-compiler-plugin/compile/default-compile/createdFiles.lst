@@ -6,9 +6,12 @@ com\backend\clinicaOdontologica\dto\entrada\TurnoEntradaDto.class
 com\backend\clinicaOdontologica\service\IPacienteService.class
 com\backend\clinicaOdontologica\service\IOdontologoService.class
 com\backend\clinicaOdontologica\dto\modificacion\OdontologoModificacionDto.class
+com\backend\clinicaOdontologica\service\ITurnoService.class
 com\backend\clinicaOdontologica\dto\salida\DomicilioSalidaDto.class
 com\backend\clinicaOdontologica\repository\PacienteRepository.class
 com\backend\clinicaOdontologica\ClinicaOdontologicaApplication.class
+com\backend\clinicaOdontologica\service\impl\TurnoService$1.class
+com\backend\clinicaOdontologica\repository\TurnoRepository.class
 com\backend\clinicaOdontologica\service\impl\PacienteService.class
 com\backend\clinicaOdontologica\dto\entrada\PacienteEntradaDto.class
 com\backend\clinicaOdontologica\dto\modificacion\DomicilioModificacionDto.class
@@ -18,8 +21,10 @@ com\backend\clinicaOdontologica\service\impl\OdontologoService.class
 com\backend\clinicaOdontologica\dto\modificacion\TurnoModificacionDto.class
 com\backend\clinicaOdontologica\dto\salida\TurnoSalidaDto.class
 com\backend\clinicaOdontologica\model\Paciente.class
+com\backend\clinicaOdontologica\controller\TurnoController.class
 com\backend\clinicaOdontologica\model\Turno.class
 com\backend\clinicaOdontologica\controller\PacienteController.class
 com\backend\clinicaOdontologica\dto\entrada\DomicilioEntradaDto.class
 com\backend\clinicaOdontologica\dto\modificacion\PacienteModificacionDto.class
 com\backend\clinicaOdontologica\model\Domicilio.class
+com\backend\clinicaOdontologica\service\impl\TurnoService.class

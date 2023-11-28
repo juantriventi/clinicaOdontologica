@@ -40,6 +40,7 @@ public class ClinicaOdontologicaApplication {
 		config.addAllowedMethod("GET");
 		config.addAllowedMethod("POST");
 		config.addAllowedMethod("PUT");
+		config.addAllowedMethod("DELETE");
 
 		// Permitir incluir encabezados específicos en la solicitud
 		config.addAllowedHeader("*");
