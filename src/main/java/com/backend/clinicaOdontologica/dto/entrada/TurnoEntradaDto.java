@@ -8,49 +8,45 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class TurnoEntradaDto {
-    @NotNull(message="La fecha no puede ser nula")
-    @NotBlank(message="Debe especificarse la fecha")
-    private LocalDateTime fechaYhora;
+    @NotNull(message = "El id del odontólogo no puede ser nulo")
+    private Long odontologoId;
 
-    @NotNull(message="El odontologo no puede ser nulo")
-    @NotBlank(message="Debe especificarse el odontologo")
-    private Odontologo odontologo;
+    @NotNull(message = "El id del paciente no puede ser nulo")
+    private Long pacienteId;
 
-    @NotNull(message="El paciente no puede ser nulo")
-    @NotBlank(message="Debe especificarse el paciente")
-    private Paciente paciente;
+    @NotNull(message = "La fecha y hora no pueden ser nulas")
+    private LocalDateTime fechaYHora;
 
     public TurnoEntradaDto() {
     }
 
-    public TurnoEntradaDto(LocalDateTime fechaYhora, Odontologo odontologo, Paciente paciente) {
-
-        this.fechaYhora = fechaYhora;
-        this.odontologo = odontologo;
-        this.paciente = paciente;
+    public TurnoEntradaDto(@NotNull(message = "El id del odontólogo no puede ser nulo") Long odontologoId, @NotNull(message = "El id del paciente no puede ser nulo") Long pacienteId, @NotNull(message = "La fecha y hora no pueden ser nulas") LocalDateTime fechaYHora) {
+        this.odontologoId = odontologoId;
+        this.pacienteId = pacienteId;
+        this.fechaYHora = fechaYHora;
     }
 
-    public LocalDateTime getFechaYhora() {
-        return fechaYhora;
+    public Long getOdontologoId() {
+        return odontologoId;
     }
 
-    public void setFechaYhora(LocalDateTime fechaYhora) {
-        this.fechaYhora = fechaYhora;
+    public void setOdontologoId(Long odontologoId) {
+        this.odontologoId = odontologoId;
     }
 
-    public Odontologo getOdontologo() {
-        return odontologo;
+    public Long getPacienteId() {
+        return pacienteId;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public void setFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYHora = fechaYHora;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public Throwable getFechaYHora() {
+        return null;
     }
 }

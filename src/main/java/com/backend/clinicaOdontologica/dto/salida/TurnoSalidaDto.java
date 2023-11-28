@@ -15,16 +15,16 @@ public class TurnoSalidaDto {
 
     @NotNull(message="El odontologo no puede ser nulo")
     @NotBlank(message="Debe especificarse el odontologo")
-    private Odontologo odontologo;
+    private OdontologoSalidaDto odontologo;
 
     @NotNull(message="El paciente no puede ser nulo")
     @NotBlank(message="Debe especificarse el paciente")
-    private Paciente paciente;
+    private PacienteSalidaDto paciente;
 
     public TurnoSalidaDto() {
     }
 
-    public TurnoSalidaDto(LocalDateTime fechaYhora, Odontologo odontologo, Paciente paciente) {
+    public TurnoSalidaDto(long id, @NotNull(message = "La fecha no puede ser nula") LocalDateTime fechaYhora, @NotNull(message = "El odontologo no puede ser nulo") OdontologoSalidaDto odontologo, @NotNull(message = "El paciente no puede ser nulo") PacienteSalidaDto paciente) {
         this.id = id;
         this.fechaYhora = fechaYhora;
         this.odontologo = odontologo;
@@ -39,19 +39,32 @@ public class TurnoSalidaDto {
         this.fechaYhora = fechaYhora;
     }
 
-    public Odontologo getOdontologo() {
+
+    public OdontologoSalidaDto getOdontologo() {
         return odontologo;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
+    public void setOdontologo(OdontologoSalidaDto odontologo) {
         this.odontologo = odontologo;
     }
 
-    public Paciente getPaciente() {
+    public PacienteSalidaDto getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(PacienteSalidaDto paciente) {
         this.paciente = paciente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYhora = fechaYHora;
     }
 }

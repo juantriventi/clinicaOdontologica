@@ -1,15 +1,18 @@
 package com.backend.clinicaOdontologica.service;
 
-import com.backend.clinicaOdontologica.dto.entrada.PacienteEntradaDto;
 import com.backend.clinicaOdontologica.dto.entrada.TurnoEntradaDto;
-import com.backend.clinicaOdontologica.dto.salida.PacienteSalidaDto;
+import com.backend.clinicaOdontologica.dto.salida.TurnoSalidaDto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ITurnoService {
 
-    PacienteSalidaDto registrarTurno(TurnoEntradaDto turno);
-    PacienteSalidaDto buscarTurnoPorId(Long id);
+    TurnoSalidaDto programarTurno(Long pacienteId, Long odontologoId, LocalDateTime fecha);
 
-    List<PacienteSalidaDto> listarTurnos();
+    List<TurnoSalidaDto> listarTurnos();
+
+    void cancelarTurno(Long turnoId);
+
+    TurnoSalidaDto programarTurno(TurnoEntradaDto turnoEntradaDto);
 }
