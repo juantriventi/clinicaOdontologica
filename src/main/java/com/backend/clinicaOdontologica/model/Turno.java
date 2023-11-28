@@ -11,23 +11,25 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private LocalDateTime fechaYHora;
-
-    @ManyToOne
-    @JoinColumn(name = "odontologo_id")
-    private Odontologo odontologo;
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
+    @ManyToOne
+    @JoinColumn(name = "odontologo_id")
+    private Odontologo odontologo;
+
+    @Column
+    private LocalDateTime fechaYHora;
+
     public Turno() {
     }
 
-    public Turno(LocalDateTime fechaYHora, Odontologo odontologo, Paciente paciente) {
-
-        this.fechaYHora = fechaYHora;
-        this.odontologo = odontologo;
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
+        this.id = id;
         this.paciente = paciente;
+        this.odontologo = odontologo;
+        this.fechaYHora = fechaYHora;
     }
 
     public Long getId() {
@@ -38,12 +40,12 @@ public class Turno {
         this.id = id;
     }
 
-    public LocalDateTime getFechaYHora() {
-        return fechaYHora;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public Odontologo getOdontologo() {
@@ -54,11 +56,11 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public LocalDateTime getFechaYHora() {
+        return fechaYHora;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYHora = fechaYHora;
     }
 }

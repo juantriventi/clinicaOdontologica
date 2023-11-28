@@ -1,78 +1,68 @@
 package com.backend.clinicaOdontologica.service.impl;
 
 import com.backend.clinicaOdontologica.dto.entrada.TurnoEntradaDto;
-import com.backend.clinicaOdontologica.dto.salida.OdontologoSalidaDto;
-import com.backend.clinicaOdontologica.dto.salida.PacienteSalidaDto;
 import com.backend.clinicaOdontologica.dto.salida.TurnoSalidaDto;
 import com.backend.clinicaOdontologica.model.Odontologo;
 import com.backend.clinicaOdontologica.model.Paciente;
 import com.backend.clinicaOdontologica.model.Turno;
+import com.backend.clinicaOdontologica.repository.OdontologoRepository;
+import com.backend.clinicaOdontologica.repository.PacienteRepository;
 import com.backend.clinicaOdontologica.repository.TurnoRepository;
 import com.backend.clinicaOdontologica.service.ITurnoService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class TurnoService implements ITurnoService {
-
     private final Logger LOGGER = LoggerFactory.getLogger(TurnoService.class);
 
-    private final TurnoRepository turnoRepository;
-    private final ModelMapper modelMapper;
+    private TurnoRepository turnoRepository;
+
+    private final OdontologoRepository odontologoRepository;
+    private final PacienteRepository pacienteRepository;
+
+    private ModelMapper modelMapper;
 
     @Autowired
-    public TurnoService(TurnoRepository turnoRepository, ModelMapper modelMapper) {
+    public TurnoService(TurnoRepository turnoRepository, OdontologoRepository odontologoRepository, PacienteRepository pacienteRepository, ModelMapper modelMapper) {
         this.turnoRepository = turnoRepository;
+        this.odontologoRepository = odontologoRepository;
+        this.pacienteRepository = pacienteRepository;
         this.modelMapper = modelMapper;
     }
 
-    @Override
-    public TurnoSalidaDto programarTurno(TurnoEntradaDto turnoEntradaDto) {
-        LOGGER.info("Programando turno para la fecha y hora: {}", turnoEntradaDto.getFechaYHora());
-
-        // Mapeo de TurnoEntradaDto a Turno
+    public TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto) {
+        if (turnoEntradaDto.getOdontologo() == null || turnoEntradaDto.getPaciente() == null || turnoEntradaDto.getFechaYhora() == null) {
+            throw new IllegalArgumentException("No pueden haber campos vacios");
+        }
         Turno turno = modelMapper.map(turnoEntradaDto, Turno.class);
 
-        // Guardar el turno en la base de datos
-        Turno turnoProgramado = turnoRepository.save(turno);
+        // defino entidades del repositorio
+        Odontologo odontologo = odontologoRepository.findById((long) turnoEntradaDto.getOdontologo().getId()).orElse(null);
+        Paciente paciente = pacienteRepository.findById(turnoEntradaDto.getPaciente().getId()).orElse(null);
 
-        // Mapeo de Turno a TurnoSalidaDto
-        TurnoSalidaDto turnoSalidaDto = modelMapper.map(turnoProgramado, TurnoSalidaDto.class);
+        // hago las referencias
+        turno.setOdontologo(odontologo);
+        turno.setPaciente(paciente);
 
-        // También mapeamos manualmente las propiedades necesarias
-        turnoSalidaDto.setFechaYHora(turnoProgramado.getFechaYHora());
-        turnoSalidaDto.setOdontologo(modelMapper.map(turnoProgramado.getOdontologo(), OdontologoSalidaDto.class));
-        turnoSalidaDto.setPaciente(modelMapper.map(turnoProgramado.getPaciente(), PacienteSalidaDto.class));
-
-        LOGGER.info("Turno programado exitosamente. ID del turno: {}", turnoSalidaDto.getId());
-
-        // Devolver el turno programado
-        return turnoSalidaDto;
-    }
-
-
-    @Override
-    public TurnoSalidaDto programarTurno(Long pacienteId, Long odontologoId, LocalDateTime fecha) {
-        return null;
+        Turno turnoRegistrado = turnoRepository.save(turno);
+        return modelMapper.map(turnoRegistrado, TurnoSalidaDto.class);
     }
 
     @Override
-    public List<TurnoSalidaDto> listarTurnos() {
-        return turnoRepository.findAll().stream()
-                .map(turno -> modelMapper.map(turno, TurnoSalidaDto.class))
-                .collect(Collectors.toList());
+    public List<TurnoSalidaDto> listarTodosLosTurnos() {
+        List<Turno> turnos = turnoRepository.findAll();
+        return modelMapper.map(turnos, new TypeToken<List<TurnoSalidaDto>>() {}.getType());
     }
 
     @Override
-    public void cancelarTurno(Long turnoId) {
-        turnoRepository.deleteById(turnoId);
+    public void eliminarTurnoPorId(Long id) {
+        turnoRepository.deleteById(id);
     }
 }

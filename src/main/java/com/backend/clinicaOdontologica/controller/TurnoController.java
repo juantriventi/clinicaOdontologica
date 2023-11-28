@@ -1,13 +1,17 @@
 package com.backend.clinicaOdontologica.controller;
 
+import com.backend.clinicaOdontologica.dto.entrada.OdontologoEntradaDto;
 import com.backend.clinicaOdontologica.dto.entrada.TurnoEntradaDto;
+import com.backend.clinicaOdontologica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinicaOdontologica.dto.salida.TurnoSalidaDto;
+import com.backend.clinicaOdontologica.service.IOdontologoService;
 import com.backend.clinicaOdontologica.service.ITurnoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -15,29 +19,25 @@ import java.util.List;
 public class TurnoController {
 
     private final ITurnoService turnoService;
-
     @Autowired
-    public TurnoController(ITurnoService turnoService) {
+    public TurnoController(ITurnoService turnoService, IOdontologoService odontologoService) {
         this.turnoService = turnoService;
     }
-
-    @PostMapping("/programar")
-    public ResponseEntity<TurnoSalidaDto> programarTurno(@RequestBody TurnoEntradaDto turnoEntradaDto) {
-        // Lógica para programar un turno
-        TurnoSalidaDto turnoProgramado = turnoService.programarTurno(turnoEntradaDto);
-
-        // Devolver respuesta exitosa con el turno programado
-        return ResponseEntity.ok(turnoProgramado);
+    @PostMapping("/registrar")
+    public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody TurnoEntradaDto turnoEntradaDto) {
+        TurnoSalidaDto turnoRegistrado = turnoService.registrarTurno(turnoEntradaDto);
+        return ResponseEntity.ok(turnoRegistrado);
     }
 
     @GetMapping("/listar")
-    public List<TurnoSalidaDto> listarTurnos() {
-        return turnoService.listarTurnos();
+    public ResponseEntity<List<TurnoSalidaDto>> listarTodosLosTurnos() {
+        List<TurnoSalidaDto> turnos = turnoService.listarTodosLosTurnos();
+        return ResponseEntity.ok(turnos);
     }
 
-    @DeleteMapping("/cancelar/{turnoId}")
-    public void cancelarTurno(@PathVariable Long turnoId) {
-        turnoService.cancelarTurno(turnoId);
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarTurnoPorId(@PathVariable Long id) {
+        turnoService.eliminarTurnoPorId(id);
+        return ResponseEntity.ok("Turno eliminado correctamente");
     }
-
 }

@@ -23,8 +23,7 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente_id")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Turno> turnoList;
     public Paciente() {
 

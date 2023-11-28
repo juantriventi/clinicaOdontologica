@@ -18,8 +18,7 @@ public class Odontologo {
     private String nombre;
     @Column(length = 50)
     private String apellido;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "odontologo")
+    @OneToMany(mappedBy = "odontologo", cascade = CascadeType.ALL)
     private List<Turno> turnoList;
     public Odontologo() {
     }
