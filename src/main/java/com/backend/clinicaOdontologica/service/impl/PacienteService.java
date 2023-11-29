@@ -70,5 +70,10 @@ public class PacienteService implements IPacienteService {
         return pacientesSalidaDto;
     }
 
+    @Override
+    public void eliminarPaciente(Long id) {
+        pacienteRepository.deleteById(id);
+    }
+
 
 }

@@ -12,119 +12,180 @@
 <body>
 <div class="container mt-3">
     <h1 class="text-center">Clinica Odontologica</h1>
-    <!-- registrar turno -->
-    <h2>Registrar Turno</h2>
+<!-- registrar turno -->
+<h2>Registrar Turno</h2>
+<div class="row">
+    <div class="col-md-6">
+        <label for="fechaYhoraInput" class="form-label">Fecha y Hora:</label>
+        <input type="datetime-local" class="form-control" id="fechaYhoraInput">
+    </div>
+    <div class="col-md-6">
+        <label for="odontologoIdInput" class="form-label">ID del Odontólogo:</label>
+        <input type="number" class="form-control" id="odontologoIdInput">
+    </div>
+    <div class="col-md-6">
+        <label for="pacienteIdInput" class="form-label">ID del Paciente:</label>
+        <input type="number" class="form-control" id="pacienteIdInput">
+    </div>
+</div>
+<div class="mt-3 p-3 text-center">
+    <button onclick="registrarTurno()" class="btn btn-primary">Registrar Turno</button>
+</div>
+<!-- lista de Turnos -->
+
+<h2>Lista de Turnos</h2>
+<div id="turnoData">
+    <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+        <div id="spinner" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- registrar Pacientes -->
+<h2>Registrar Pacientes</h2>
+
     <div class="row">
         <div class="col-md-6">
-            <label for="fechaYhoraInput" class="form-label">Fecha y Hora:</label>
-            <input type="datetime-local" class="form-control" id="fechaYhoraInput">
+            <label for="nombreInput" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el nombre">
         </div>
-        <div class="col-md-6">
-            <label for="odontologoIdInput" class="form-label">ID del Odontólogo:</label>
-            <input type="number" class="form-control" id="odontologoIdInput">
-        </div>
-        <div class="col-md-6">
-            <label for="pacienteIdInput" class="form-label">ID del Paciente:</label>
-            <input type="number" class="form-control" id="pacienteIdInput">
-        </div>
-    </div>
-    <div class="mt-3 p-3 text-center">
-        <button onclick="registrarTurno()" class="btn btn-primary">Registrar Turno</button>
-    </div>
-    <!-- lista de Turnos -->
 
-    <h2>Lista de Turnos</h2>
-    <div id="turnoData">
-        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-            <div id="spinner" class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Cargando...</span>
-            </div>
+        <div class="col-md-6">
+            <label for="apellidoInput" class="form-label">Apellido:</label>
+            <input type="text" class="form-control" id="apellidoInput" placeholder="Ingrese el apellido">
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="dniInput" class="form-label">DNI:</label>
+            <input type="number" class="form-control" id="dniInput" placeholder="Ingrese el DNI">
+        </div>
+
+        <div class="col-md-6">
+            <label for="fechaIngresoInput" class="form-label">Fecha de Ingreso:</label>
+            <input type="date" class="form-control" id="fechaIngresoInput">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="calleInput" class="form-label">Calle:</label>
+            <input type="text" class="form-control" id="calleInput" placeholder="Ingrese la calle">
+        </div>
+
+        <div class="col-md-6">
+            <label for="numeroInput" class="form-label">Número:</label>
+            <input type="number" class="form-control" id="numeroInput" placeholder="Ingrese el número">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="localidadInput" class="form-label">Localidad:</label>
+            <input type="text" class="form-control" id="localidadInput" placeholder="Ingrese la localidad">
+        </div>
+
+        <div class="col-md-6">
+            <label for="provinciaInput" class="form-label">Provincia:</label>
+            <input type="text" class="form-control" id="provinciaInput" placeholder="Ingrese la provincia">
+        </div>
+    </div>
+
+<div class="mt-3 p-3 text-center">
+    <button onclick="registrarUsuario()" class="btn btn-primary">Registrar Usuario</button>
+</div>
+
+
+<div id="userData2"></div>
+
+<br>
+<!-- lista pacientes -->
+
+<h2>Lista de pacientes</h2>
+<div id="userData3">
+    <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+        <div id="spinner" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
+</div>
+
+<br>
+<!-- buscar paciente por id -->
+<h2>Buscar por id</h2>
+<div id="userData" class="card bg-primary text-white mb-5">
+    <div class="card-body">
+        <h5 class="card-title">Buscar por id</h5>
+        <div class="mb-3">
+            <label for="userIdInput" class="form-label text-white">ID de usuario:</label>
+            <input type="text" class="form-control" id="userIdInput" placeholder="Ingrese el ID del usuario">
+        </div>
+        <button onclick="realizarAxiosRequest()" class="btn btn-light">Buscar Usuario</button>
+    </div>
+</div>
     <br>
-    <!-- registrar Pacientes -->
-    <h2>Registrar Pacientes</h2>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="nombreInput" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="nombreInput" placeholder="Ingrese el nombre">
-            </div>
 
-            <div class="col-md-6">
-                <label for="apellidoInput" class="form-label">Apellido:</label>
-                <input type="text" class="form-control" id="apellidoInput" placeholder="Ingrese el apellido">
-            </div>
+    <br>
+    <h2>Registrar Odontologos</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="nombreInput" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombreOdontInput" placeholder="Ingrese el nombre">
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="dniInput" class="form-label">DNI:</label>
-                <input type="number" class="form-control" id="dniInput" placeholder="Ingrese el DNI">
-            </div>
-
-            <div class="col-md-6">
-                <label for="fechaIngresoInput" class="form-label">Fecha de Ingreso:</label>
-                <input type="date" class="form-control" id="fechaIngresoInput">
-            </div>
+        <div class="col-md-6">
+            <label for="apellidoInput" class="form-label">Apellido:</label>
+            <input type="text" class="form-control" id="apellidoOdontInput" placeholder="Ingrese el apellido">
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="calleInput" class="form-label">Calle:</label>
-                <input type="text" class="form-control" id="calleInput" placeholder="Ingrese la calle">
-            </div>
-
-            <div class="col-md-6">
-                <label for="numeroInput" class="form-label">Número:</label>
-                <input type="number" class="form-control" id="numeroInput" placeholder="Ingrese el número">
-            </div>
+        <div class="col-md-6">
+            <label for="matriculaInput" class="form-label">Matricula:</label>
+            <input type="number" class="form-control" id="matriculaOdontInput" placeholder="Ingrese matrícula">
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="localidadInput" class="form-label">Localidad:</label>
-                <input type="text" class="form-control" id="localidadInput" placeholder="Ingrese la localidad">
-            </div>
+    </div>
 
-            <div class="col-md-6">
-                <label for="provinciaInput" class="form-label">Provincia:</label>
-                <input type="text" class="form-control" id="provinciaInput" placeholder="Ingrese la provincia">
-            </div>
-        </div>
+
+
 
     <div class="mt-3 p-3 text-center">
         <button onclick="registrarUsuario()" class="btn btn-primary">Registrar Usuario</button>
     </div>
 
 
-    <div id="userData2"></div>
+    <div id="odontData2"></div>
 
     <br>
-    <!-- lista pacientes -->
+    <!-- lista Odontologos -->
 
-    <h2>Lista de pacientes</h2>
-    <div id="userData3">
+    <h2>Lista de odontolgos</h2>
+    <div id="odontData3">
         <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-            <div id="spinner" class="spinner-border text-primary" role="status">
+            <div id="spinner2" class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Cargando...</span>
             </div>
         </div>
     </div>
 
     <br>
-    <!-- buscar paciente por id -->
-    <h2>Buscar por id</h2>
-    <div id="userData" class="card bg-primary text-white mb-5">
+    <!-- buscar Odontologo por id -->
+    <h2>Buscar odontologo por id</h2>
+    <div id="odontData" class="card bg-primary text-white mb-5">
         <div class="card-body">
             <h5 class="card-title">Buscar por id</h5>
             <div class="mb-3">
-                <label for="userIdInput" class="form-label text-white">ID de usuario:</label>
-                <input type="text" class="form-control" id="userIdInput" placeholder="Ingrese el ID del usuario">
+                <label for="odontIdInput" class="form-label text-white">ID de usuario:</label>
+                <input type="text" class="form-control" id="odontIdInput" placeholder="Ingrese el ID del odontologo">
             </div>
-            <button onclick="realizarAxiosRequest()" class="btn btn-light">Buscar Usuario</button>
+            <button onclick="realizarAxiosRequestOdont()" class="btn btn-light">Buscar Odontologo</button>
         </div>
     </div>
+
 
 </div>
 <script>
@@ -294,13 +355,14 @@ function registrarTurno() {
         // Convertir a cadena JSON
         var turnoDataJSON = JSON.stringify(turnoData);
 
-        var url = 'http://localhost:8080/api/turnos/registrar';
+        var url = 'http://localhost:8080/turnos/registrar';
 
         // Realizar la solicitud Axios POST
         axios.post(url, turnoData)
             .then(response => {
                 console.log('Turno registrado con ID:', response.data.id);
-                mostrarDatosTurno(response.data);
+                 // Recargar la página
+                location.reload();
             })
             .catch(error => {
                 // Manejar los errores
@@ -308,16 +370,6 @@ function registrarTurno() {
                 console.log(turnoData);
             });
     }
-
-
-function mostrarDatosTurno(turnoData) {
-    var html = '<h5 class="card-title">Datos del Turno</h5>';
-    html += '<p class="card-text"><strong>ID:</strong> ' + turnoData.id + '</p>';
-    html += '<p class="card-text"><strong>Fecha y Hora:</strong> ' + turnoData.fechaYhora + '</p>';
-
-    // Mostrar el HTML en el elemento turnoData
-    document.getElementById('turnoData').innerHTML = html;
-}
 
 
 // Función para mostrar la lista de pacientes o turnos
@@ -388,7 +440,7 @@ function mostrarLista(data, tipo) {
 // Función para obtener y mostrar todos los turnos
 function obtenerTodosLosTurnos() {
     // URL para realizar la solicitud Axios GET de todos los turnos
-    var url = 'http://localhost:8080/api/turnos/listar';
+    var url = 'http://localhost:8080/turnos/listar';
 
     // Realizar la solicitud Axios GET
     axios.get(url)
@@ -413,14 +465,128 @@ function eliminarTurno(turnoId) {
     // Realizar la solicitud Axios DELETE
     axios.delete(url)
         .then(response => {
-            // Manejar la respuesta después de la eliminación (puedes recargar la lista de turnos, mostrar un mensaje, etc.)
             console.log('Turno eliminado con éxito:', response.data);
+             // Recargar la página
+            location.reload();
         })
         .catch(error => {
             // Manejar los errores
             console.error('Error en la solicitud Axios:', error);
         });
 }
+
+
+
+    function realizarAxiosRequestOdont() {
+    var odontologoId = document.getElementById('odontIdInput').value;
+    if (!odontologoId) {
+        alert('Ingrese un ID de odontólogo válido.');
+        return;
+    }
+    var url = 'http://localhost:8080/odontologos/' + odontologoId;
+    axios.get(url)
+        .then(response => {
+            mostrarDatosOdontologo(response.data);
+        })
+        .catch(error => {
+            console.error('Error en la solicitud Axios:', error);
+        });
+}
+
+
+function mostrarDatosOdontologo(odontoData) {
+    const html = `
+        <h5 class="card-title">Datos del Odontólogo</h5>
+        <p class="card-text"><strong>ID:</strong> ${odontoData.id}</p>
+        <p class="card-text"><strong>Nombre:</strong> ${odontoData.nombre}</p>
+        <p class="card-text"><strong>Apellido:</strong> ${odontoData.apellido}</p>
+        <p class="card-text"><strong>Matricula:</strong> ${odontoData.matricula}</p>
+        // Add more fields based on your data structure
+    `;
+
+    // Display the HTML in the 'odontologoData' element
+    document.getElementById('odontologoData').innerHTML = html;
+}
+
+         function registrarOdontologo() {
+            // Obtener los valores de los inputs
+            var nombre = document.getElementById('nombreOdontInput').value;
+            var apellido = document.getElementById('apellidoOdontInput').value;
+            var matricula = document.getElementById('matriculaOdontInput').value;
+
+            // Verificar si se ingresaron datos válidos
+            if (!nombre || !apellido || !matricula) {
+                alert('Ingrese todos los datos del odontologo.');
+                return;
+            }
+
+            // Construir el objeto JSON con los datos del usuario
+            var odontData2 = {
+                nombre: nombre,
+                apellido: apellido,
+                matricula: matricula
+            };
+
+            var url = 'http://localhost:8080/odontologos/registrar';
+
+            // Realizar la solicitud Axios POST
+            axios.post(url, odontData2)
+                .then(response => {
+                    console.log('Odontologo registrado con ID:', response.data.id);
+                })
+                .catch(error => {
+                    // Manejar los errores
+                    console.error('Error en la solicitud Axios:', error);
+                });
+        }
+
+document.addEventListener('DOMContentLoaded', function() {
+    obtenerTodosLosOdontologos();
+});
+
+function obtenerTodosLosOdontologos() {
+    const url = 'http://localhost:8080/odontologos/listar';
+
+    axios.get(url)
+        .then(response => mostrarTodosLosOdontologos(response.data))
+        .catch(error => console.error('Error en la solicitud Axios:', error));
+}
+
+function mostrarTodosLosOdontologos(odontologos) {
+    document.getElementById('spinner').style.display = 'inline-block';
+
+    setTimeout(function () {
+        // Construir el HTML con la lista de todos los odontologos
+        var html = '<h3 class="text-center text-white">Lista de Todos los odontologos</h3>';
+        html += '<div class="row" style="margin-top:-25px;">';
+
+        // Verificar si hay odontologos
+        if (odontologos && odontologos.length > 0) {
+            // Iterar sobre la lista de odontologos
+            odontologos.forEach(odontologo => {
+                html += '<div class="col-md-3 mb-3">';
+                html += '<div class="card">';
+                html += '<div class="card-body">';
+                html += '<p class="card-text">Nombre: ' + odontologo.nombre + '</p>';
+                html += '<p class="card-text">Apellido: ' + odontologo.apellido + '</p>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+            });
+        } else {
+            html += '<div class="col-md-12 mb-3">';
+            html += '<p class="text-center">No hay odontologos.</p>';
+            html += '</div>';
+        }
+
+        html += '</div>';
+
+        document.getElementById('odontData3').innerHTML = html;
+    }, 1000); // 1000 milisegundos (1 segundo)
+}
+
+
+
 
     </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

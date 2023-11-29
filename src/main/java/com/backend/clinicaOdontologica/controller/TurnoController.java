@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/turnos")
+@RequestMapping("/turnos")
 public class TurnoController {
 
     private final ITurnoService turnoService;
@@ -33,6 +33,13 @@ public class TurnoController {
     public ResponseEntity<List<TurnoSalidaDto>> listarTodosLosTurnos() {
         List<TurnoSalidaDto> turnos = turnoService.listarTodosLosTurnos();
         return ResponseEntity.ok(turnos);
+    }
+
+
+    @GetMapping("{id}")
+    public ResponseEntity<TurnoSalidaDto> obtenerTurnoPorId(@PathVariable Long id) {
+        TurnoSalidaDto turno = turnoService.buscarTurnoPorId(id);
+        return ResponseEntity.ok(turno);
     }
 
     @DeleteMapping("/eliminar/{id}")

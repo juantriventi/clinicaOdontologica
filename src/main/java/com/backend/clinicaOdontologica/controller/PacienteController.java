@@ -37,4 +37,10 @@ public class PacienteController {
     public ResponseEntity<PacienteSalidaDto> obtenerPacientePorId(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.OK);
     }
+
+    @DeleteMapping("eliminar/{id}")
+    public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) {
+        pacienteService.eliminarPaciente(id);
+        return new ResponseEntity<>("Paciente eliminado correctamente", HttpStatus.OK);
+    }
 }

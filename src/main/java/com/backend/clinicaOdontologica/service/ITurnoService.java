@@ -15,4 +15,6 @@ public interface ITurnoService {
     List<TurnoSalidaDto> listarTodosLosTurnos();
 
     void eliminarTurnoPorId(Long id);
+
+    TurnoSalidaDto buscarTurnoPorId(Long id);
 }

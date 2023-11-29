@@ -65,4 +65,10 @@ public class TurnoService implements ITurnoService {
     public void eliminarTurnoPorId(Long id) {
         turnoRepository.deleteById(id);
     }
+
+    @Override
+    public TurnoSalidaDto buscarTurnoPorId(Long id) {
+        Turno turno = turnoRepository.findById(id).orElse(null);
+        return modelMapper.map(turno, TurnoSalidaDto.class);
+    }
 }
