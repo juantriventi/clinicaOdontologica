@@ -24,6 +24,9 @@ com\backend\clinicaOdontologica\model\Paciente.class
 com\backend\clinicaOdontologica\controller\TurnoController.class
 com\backend\clinicaOdontologica\model\Turno.class
 com\backend\clinicaOdontologica\controller\PacienteController.class
+com\backend\clinicaOdontologica\exception\GlobalException.class
+com\backend\clinicaOdontologica\exception\ResourceNotFoundException.class
+com\backend\clinicaOdontologica\exception\BadRequestException.class
 com\backend\clinicaOdontologica\dto\entrada\DomicilioEntradaDto.class
 com\backend\clinicaOdontologica\dto\modificacion\PacienteModificacionDto.class
 com\backend\clinicaOdontologica\model\Domicilio.class

@@ -154,7 +154,7 @@
 
 
     <div class="mt-3 p-3 text-center">
-        <button onclick="registrarUsuario()" class="btn btn-primary">Registrar Usuario</button>
+        <button onclick="registrarOdontologo()" class="btn btn-primary">Registrar Odontologo</button>
     </div>
 
 
@@ -501,11 +501,10 @@ function mostrarDatosOdontologo(odontoData) {
         <p class="card-text"><strong>Nombre:</strong> ${odontoData.nombre}</p>
         <p class="card-text"><strong>Apellido:</strong> ${odontoData.apellido}</p>
         <p class="card-text"><strong>Matricula:</strong> ${odontoData.matricula}</p>
-        // Add more fields based on your data structure
     `;
 
-    // Display the HTML in the 'odontologoData' element
-    document.getElementById('odontologoData').innerHTML = html;
+    // Display the HTML in the 'odontData' element
+    document.getElementById('odontData').innerHTML += html;
 }
 
          function registrarOdontologo() {

@@ -4,6 +4,7 @@ import com.backend.clinicaOdontologica.dto.entrada.OdontologoEntradaDto;
 import com.backend.clinicaOdontologica.dto.entrada.TurnoEntradaDto;
 import com.backend.clinicaOdontologica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinicaOdontologica.dto.salida.TurnoSalidaDto;
+import com.backend.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.backend.clinicaOdontologica.service.IOdontologoService;
 import com.backend.clinicaOdontologica.service.ITurnoService;
 import jakarta.validation.Valid;
@@ -37,13 +38,13 @@ public class TurnoController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<TurnoSalidaDto> obtenerTurnoPorId(@PathVariable Long id) {
+    public ResponseEntity<TurnoSalidaDto> obtenerTurnoPorId(@PathVariable Long id) throws ResourceNotFoundException {
         TurnoSalidaDto turno = turnoService.buscarTurnoPorId(id);
         return ResponseEntity.ok(turno);
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarTurnoPorId(@PathVariable Long id) {
+    public ResponseEntity<String> eliminarTurnoPorId(@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurnoPorId(id);
         return ResponseEntity.ok("Turno eliminado correctamente");
     }

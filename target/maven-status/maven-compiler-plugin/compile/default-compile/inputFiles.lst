@@ -22,8 +22,11 @@ C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clin
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\modificacion\PacienteModificacionDto.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\salida\DomicilioSalidaDto.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\entrada\TurnoEntradaDto.java
+C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\exception\GlobalException.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\controller\TurnoController.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\model\Paciente.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\service\ITurnoService.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\dto\salida\OdontologoSalidaDto.java
+C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\exception\ResourceNotFoundException.java
 C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\service\IPacienteService.java
+C:\Users\jereg\Escritorio\jere\DH-CTD\QuintoBimestre\BackEnd1\ProyectoFinal\clinicaOdontologica\src\main\java\com\backend\clinicaOdontologica\exception\BadRequestException.java
